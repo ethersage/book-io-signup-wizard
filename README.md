@@ -8,6 +8,6 @@ $ git clone <this repo>
 $ npm install
 $ npm run dev
 ```
-
+Your API server will now be listening on port `9000`
 
 
