@@ -8,6 +8,7 @@ const loginRouter = require('./routes/login');
 const app = express();
 app.use(cors({origin: '*'}));
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 app.listen(9000);
 
 app.get('/', (req, res) => {
