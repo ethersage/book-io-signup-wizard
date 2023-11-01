@@ -78,7 +78,6 @@ export default defineComponent({
                     return response.json();
                 })
                 .then((data) => {
-                    console.log(data.message); // Handle the success response
                     this.saveFavoriteBook();
                 })
                 .then((response) => {
@@ -137,9 +136,9 @@ export default defineComponent({
                     }
                     return response.json();
                 })
-                .then((data) => {
-                    console.log(data.message); // Handle the success response
-                })
+                // .then((data) => {
+                //     console.log(data.message); // Handle the success response
+                // })
                 .catch((error) => {
                     console.error('Error during saving favorite book:', error);
                 });

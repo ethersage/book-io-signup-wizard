@@ -50,10 +50,6 @@ export default defineComponent({
     methods: {
         ...mapActions('auth', ['login']),
         loginUser() {
-            console.log('loginUser');
-
-            console.log({credentials: this.credentials});
-
             this.$store
                 .dispatch('login', {
                     username: this.credentials.username,
@@ -61,7 +57,6 @@ export default defineComponent({
                 })
                 // this.login(this.credentials)
                 .then(() => {
-                    console.log('login successful');
                     this.$router.push('/dashboard');
                 })
                 .catch((error) => {
