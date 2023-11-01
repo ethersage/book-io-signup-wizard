@@ -28,7 +28,7 @@
 <script lang="ts">
 import {User, State} from '@/store';
 import Vue, {defineComponent} from 'vue';
-import {mapActions, ActionContext} from 'vuex';
+import {mapActions, ActionContext, useStore} from 'vuex';
 
 // Define what your state looks like
 // TODO: move this elsewhere
@@ -39,6 +39,10 @@ interface LoginCredentials {
 }
 
 export default defineComponent({
+    setup() {
+        const store = useStore();
+        return {store};
+    },
     data() {
         return {
             credentials: {
@@ -50,7 +54,9 @@ export default defineComponent({
     methods: {
         ...mapActions('auth', ['login']),
         loginUser() {
-            this.$store
+            // const store = useStore();
+            // console.log({store});
+            this.store
                 .dispatch('login', {
                     username: this.credentials.username,
                     password: this.credentials.password

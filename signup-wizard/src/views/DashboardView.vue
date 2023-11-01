@@ -23,23 +23,12 @@ export default defineComponent({
             favoriteBookId: null
         };
     },
-    // computed: {
-    //     username() {
-    //         // Assuming the username is stored in the Vuex store after login
-    //         return this.$store.state.user?.name;
-    //     },
-    //     books() {
-    //         return this.$store.state.books;
-    //     },
-    //     favoriteBookId() {
-    //         return this.$store.state.favoriteBookId;
-    //     }
-    // },
     created() {
         // this.fetchBooks();
         // this.fetchFavoriteBook();
-        this.$store.dispatch('fetchBooks');
-        this.$store.dispatch('fetchFavoriteBook');
+        const store = useStore();
+        store.dispatch('fetchBooks');
+        store.dispatch('fetchFavoriteBook');
     },
     methods: {
         // fetchBooks() {
