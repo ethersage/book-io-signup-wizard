@@ -50,15 +50,42 @@ export default defineComponent({
             this.step++;
         },
         completeSignup() {
+            // TODO: check if user has been created first
             console.log('Signup Completed:', {
                 username: this.username,
                 password: this.password,
                 favoriteBook: this.favoriteBook
             });
-            // Here you would handle the sign-up logic, such as calling an API.
+
+            // Construct the request payload
+            const payload = {
+                username: this.username,
+                password: this.password
+            };
+
+            // Perform the POST request to the signup endpoint
+            fetch('http://localhost:9000/users/new', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Signup failed');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data.message); // Handle the success response
+                })
+                .catch((error) => {
+                    console.error('Error during signup:', error);
+                });
         },
         fetchBooks() {
-            console.log('this.fetchBooks');
+            // TODO: show loading indicator if favorite books are not available yet
             fetch('http://localhost:9000/books') // Adjust if your endpoint is different
                 .then((response) => {
                     if (!response.ok) {
