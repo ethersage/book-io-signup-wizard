@@ -35,7 +35,7 @@ export default defineComponent({
             step: 1 as number,
             username: '' as string,
             password: '' as string,
-            favoriteBook: '' as string,
+            favoriteBookId: '' as string,
             books: [] as Array<{
                 id: number;
                 title: string;
@@ -54,7 +54,7 @@ export default defineComponent({
             console.log('Signup Completed:', {
                 username: this.username,
                 password: this.password,
-                favoriteBook: this.favoriteBook
+                favoriteBook: this.favoriteBookId
             });
 
             // Construct the request payload
@@ -83,6 +83,8 @@ export default defineComponent({
                 .catch((error) => {
                     console.error('Error during signup:', error);
                 });
+
+                
         },
         fetchBooks() {
             // TODO: show loading indicator if favorite books are not available yet
@@ -103,7 +105,43 @@ export default defineComponent({
                         error
                     );
                 });
+        },
+        saveFavoriteBook() {
+      // Make sure the username and favoriteBookId are set
+      if (!this.username || !this.favoriteBookId) {
+        alert('Username and favorite book must be provided');
+        return;
+      }
+
+      // Construct the URL with the username
+      const url = `http://localhost:9000/users/${this.username}/favorites`;
+
+      // Construct the request payload
+      const payload = {
+        book: this.favoriteBookId
+      };
+
+      // Perform the POST request to save the favorite book
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to save favorite book');
         }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data.message); // Handle the success response
+      })
+      .catch(error => {
+        console.error('Error during saving favorite book:', error);
+      });
+    }
     },
     created() {
         this.fetchBooks(); // Fetch books when component is created
