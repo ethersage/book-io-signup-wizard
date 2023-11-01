@@ -1,10 +1,11 @@
 <template>
     <div class="dashboard">
         <h1>Welcome, {{ $store.state.user }}!</h1>
+        <h1>fav book id = {{ $store.state.favoriteBookId }}</h1>
         <ul>
             <li v-for="book in $store.state.books" :key="book.id">
                 {{ book.title }}
-                <span v-if="book.id === favoriteBookId">⭐️</span>
+                <span v-if="book.id === $store.state.favoriteBookId">⭐️</span>
             </li>
         </ul>
     </div>
@@ -38,7 +39,7 @@ export default defineComponent({
         // this.fetchBooks();
         // this.fetchFavoriteBook();
         this.$store.dispatch('fetchBooks');
-        // this.$store.dispatch('fetchFavoriteBook');
+        this.$store.dispatch('fetchFavoriteBook');
     },
     methods: {
         // fetchBooks() {

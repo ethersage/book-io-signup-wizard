@@ -53,12 +53,12 @@ const store = createStore({
         },
 
         fetchFavoriteBook({state, commit}) {
-            const username = state.user?.name;
+            const username = state.user;
             if (username) {
                 fetch(`http://localhost:9000/users/${username}/favorites`)
                     .then((response) => response.json())
                     .then((data) => {
-                        commit('SET_FAVORITE_BOOK', data.favoriteBookId); // Adjust according to your API response structure
+                        commit('SET_FAVORITE_BOOK', data.data.favorites.book); // Adjust according to your API response structure
                     })
                     .catch((error) => {
                         console.error('Error fetching favorite book:', error);
