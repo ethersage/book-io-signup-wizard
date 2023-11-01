@@ -36,11 +36,13 @@ export default defineComponent({
             username: '' as string,
             password: '' as string,
             favoriteBook: '' as string,
-            books: [
-                {id: 1, title: 'Book A'},
-                {id: 2, title: 'Book B'},
-                {id: 3, title: 'Book C'}
-            ] as {id: number; title: string}[]
+            books: [] as Array<{
+                id: number;
+                title: string;
+                author: string;
+                description: string;
+                cover_url: string;
+            }>
         };
     },
     methods: {
@@ -54,7 +56,30 @@ export default defineComponent({
                 favoriteBook: this.favoriteBook
             });
             // Here you would handle the sign-up logic, such as calling an API.
+        },
+        fetchBooks() {
+            console.log('this.fetchBooks');
+            fetch('http://localhost:9000/books') // Adjust if your endpoint is different
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    this.books = data.data.books;
+                    console.log(data.data.books);
+                })
+                .catch((error) => {
+                    console.error(
+                        'There has been a problem with your fetch operation:',
+                        error
+                    );
+                });
         }
+    },
+    created() {
+        this.fetchBooks(); // Fetch books when component is created
     }
 });
 </script>
