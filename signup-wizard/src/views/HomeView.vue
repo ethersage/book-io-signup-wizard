@@ -15,7 +15,7 @@
 
         <div v-if="step === 2">
             <h2>Step 2: Select Your Favorite Book</h2>
-            <select v-model="favoriteBook">
+            <select v-model="favoriteBookId">
                 <option v-for="book in books" :key="book.id" :value="book.id">
                     {{ book.title }}
                 </option>
@@ -54,7 +54,7 @@ export default defineComponent({
             console.log('Signup Completed:', {
                 username: this.username,
                 password: this.password,
-                favoriteBook: this.favoriteBookId
+                favoriteBookId: this.favoriteBookId
             });
 
             // Construct the request payload
@@ -79,12 +79,11 @@ export default defineComponent({
                 })
                 .then((data) => {
                     console.log(data.message); // Handle the success response
+                    this.saveFavoriteBook();
                 })
                 .catch((error) => {
                     console.error('Error during signup:', error);
                 });
-
-                
         },
         fetchBooks() {
             // TODO: show loading indicator if favorite books are not available yet
@@ -107,41 +106,41 @@ export default defineComponent({
                 });
         },
         saveFavoriteBook() {
-      // Make sure the username and favoriteBookId are set
-      if (!this.username || !this.favoriteBookId) {
-        alert('Username and favorite book must be provided');
-        return;
-      }
+            // Make sure the username and favoriteBookId are set
+            if (!this.username || !this.favoriteBookId) {
+                alert('Username and favorite book must be provided');
+                return;
+            }
 
-      // Construct the URL with the username
-      const url = `http://localhost:9000/users/${this.username}/favorites`;
+            // Construct the URL with the username
+            const url = `http://localhost:9000/users/${this.username}/favorites`;
 
-      // Construct the request payload
-      const payload = {
-        book: this.favoriteBookId
-      };
+            // Construct the request payload
+            const payload = {
+                book: this.favoriteBookId
+            };
 
-      // Perform the POST request to save the favorite book
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to save favorite book');
+            // Perform the POST request to save the favorite book
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Failed to save favorite book');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data.message); // Handle the success response
+                })
+                .catch((error) => {
+                    console.error('Error during saving favorite book:', error);
+                });
         }
-        return response.json();
-      })
-      .then(data => {
-        console.log(data.message); // Handle the success response
-      })
-      .catch(error => {
-        console.error('Error during saving favorite book:', error);
-      });
-    }
     },
     created() {
         this.fetchBooks(); // Fetch books when component is created
