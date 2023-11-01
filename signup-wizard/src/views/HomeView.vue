@@ -81,6 +81,9 @@ export default defineComponent({
                     console.log(data.message); // Handle the success response
                     this.saveFavoriteBook();
                 })
+                .then((response) => {
+                    this.$router.push({name: 'login'}); // Navigate to login
+                })
                 .catch((error) => {
                     console.error('Error during signup:', error);
                 });
