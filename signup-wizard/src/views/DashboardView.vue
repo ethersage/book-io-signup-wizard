@@ -1,12 +1,12 @@
 <template>
     <div class="dashboard">
         <h1>Welcome, {{ $store.state.user }}!</h1>
-        <!-- <ul>
-            <li v-for="book in books" :key="book.id">
+        <ul>
+            <li v-for="book in $store.state.books" :key="book.id">
                 {{ book.title }}
                 <span v-if="book.id === favoriteBookId">⭐️</span>
             </li>
-        </ul> -->
+        </ul>
     </div>
 </template>
 
@@ -38,30 +38,30 @@ export default defineComponent({
         // this.fetchBooks();
         // this.fetchFavoriteBook();
         this.$store.dispatch('fetchBooks');
-        this.$store.dispatch('fetchFavoriteBook');
+        // this.$store.dispatch('fetchFavoriteBook');
     },
     methods: {
-        fetchBooks() {
-            // Replace with the actual API call
-            fetch('http://localhost:9000/books')
-                .then((response) => response.json())
-                .then((data) => {
-                    this.books = data;
-                });
-        },
-        fetchFavoriteBook() {
-            // Replace 'currentUsername' with the actual username variable
-            let currentUsername = this.$store.state.user?.name;
-            if (currentUsername) {
-                fetch(
-                    `http://localhost:9000/users/${currentUsername}/favorites`
-                )
-                    .then((response) => response.json())
-                    .then((data) => {
-                        this.favoriteBookId = data.favorites.book;
-                    });
-            }
-        }
+        // fetchBooks() {
+        //     // Replace with the actual API call
+        //     fetch('http://localhost:9000/books')
+        //         .then((response) => response.json())
+        //         .then((data) => {
+        //             this.books = data;
+        //         });
+        // },
+        // fetchFavoriteBook() {
+        //     // Replace 'currentUsername' with the actual username variable
+        //     let currentUsername = this.$store.state.user?.name;
+        //     if (currentUsername) {
+        //         fetch(
+        //             `http://localhost:9000/users/${currentUsername}/favorites`
+        //         )
+        //             .then((response) => response.json())
+        //             .then((data) => {
+        //                 this.favoriteBookId = data.favorites.book;
+        //             });
+        //     }
+        // }
     }
 });
 </script>

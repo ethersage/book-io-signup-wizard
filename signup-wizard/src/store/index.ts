@@ -39,10 +39,13 @@ const store = createStore({
     },
     actions: {
         fetchBooks({commit}) {
+            console.log('fetching books');
             fetch('http://localhost:9000/books')
                 .then((response) => response.json())
                 .then((data) => {
-                    commit('SET_BOOKS', data.books); // Assuming the API returns an object with a books array
+                    console.log('committing books');
+                    console.log(data.data.books);
+                    commit('SET_BOOKS', data.data.books); // Assuming the API returns an object with a books array
                 })
                 .catch((error) => {
                     console.error('Error fetching books:', error);
