@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <span v-if="!isSignupRoute && !$store.state.user.name"
+        <span v-if="!isSignupRoute && !$store.state.user"
             ><router-link to="/signup">Signup</router-link></span
         >
     </nav>
