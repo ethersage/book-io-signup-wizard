@@ -76,7 +76,11 @@ export default defineComponent({
                 });
         },
         async saveFavoriteBook() {
-            saveFavorite(this.username, this.favoriteBookId);
+            return saveFavorite(this.username, this.favoriteBookId).catch(
+                (error) => {
+                    console.error('Error during saving favorite book:', error);
+                }
+            );
         }
     },
     created() {

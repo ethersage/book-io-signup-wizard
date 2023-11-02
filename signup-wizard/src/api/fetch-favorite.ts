@@ -1,8 +1,7 @@
-export default function fetchFavorite(username: string) {
-    return fetch(`http://localhost:9000/users/${username}/favorites`)
-        .then((response) => response.json())
-        .then((data) => data.data.favorites.book)
-        .catch((error) => {
-            console.error('Error fetching favorite book:', error);
-        });
+export default async function fetchFavorite(username: string) {
+    const response = await fetch(
+        `http://localhost:9000/users/${username}/favorites`
+    );
+    const data = await response.json();
+    return data.data.favorites.book;
 }

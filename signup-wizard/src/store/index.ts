@@ -59,9 +59,13 @@ const store = createStore({
         fetchFavoriteBook({state, commit}) {
             const user = state.user;
             if (user && user.name) {
-                fetchFavorite(user.name).then((favorite) => {
-                    commit('SET_FAVORITE_BOOK', favorite);
-                });
+                fetchFavorite(user.name)
+                    .then((favorite) => {
+                        commit('SET_FAVORITE_BOOK', favorite);
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching favorite book:', error);
+                    });
             }
         },
 
