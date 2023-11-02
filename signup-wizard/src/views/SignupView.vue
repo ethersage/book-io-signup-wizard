@@ -64,7 +64,7 @@ export default defineComponent({
                 await newUser(this.username, this.password);
                 await this.saveFavoriteBook();
 
-                goHome();
+                goHome(true);
             } catch (error) {
                 console.error('Error during signup:', error);
             }
