@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import {goToDashboard} from '@/router/navigate';
+import {goToDashboard, goToDashboardIfLoggedIn} from '@/router/navigate';
 import {defineComponent} from 'vue';
 import {mapActions, useStore} from 'vuex';
 
@@ -60,9 +60,7 @@ export default defineComponent({
         }
     },
     created() {
-        if (this.$store.state.user) {
-            goToDashboard();
-        }
+        goToDashboardIfLoggedIn();
     }
 });
 </script>

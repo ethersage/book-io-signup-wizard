@@ -20,3 +20,9 @@ export function doIfLoggedIn(action: () => void) {
         action();
     }
 }
+
+export function goToDashboardIfLoggedIn() {
+    if (store.state.user) {
+        goToDashboard();
+    }
+}
