@@ -48,8 +48,8 @@ const store = createStore({
     actions: {
         fetchBooks({commit}) {
             fetchBooks()
-                .then((data) => {
-                    commit('SET_BOOKS', data.data.books);
+                .then((books) => {
+                    commit('SET_BOOKS', books);
                 })
                 .catch((error) => {
                     console.error('Error fetching books:', error);
@@ -59,8 +59,8 @@ const store = createStore({
         fetchFavoriteBook({state, commit}) {
             const user = state.user;
             if (user && user.name) {
-                fetchFavorite(user.name).then((data) => {
-                    commit('SET_FAVORITE_BOOK', data.data.favorites.book);
+                fetchFavorite(user.name).then((favorite) => {
+                    commit('SET_FAVORITE_BOOK', favorite);
                 });
             }
         },
