@@ -7,6 +7,9 @@
     <nav>
         <span v-if="$store.state.user">{{ $store.state.user }}</span>
     </nav>
+    <nav>
+        <span v-if="isLoggedIn"><a @click.prevent="logout">Log out</a></span>
+    </nav>
     <router-view />
 </template>
 
@@ -17,8 +20,18 @@ import {useStore} from 'vuex';
 export default defineComponent({
     name: 'AppView',
     computed: {
+        isLoggedIn() {
+            return !!this.$store.state.user;
+        },
+
         isSignupRoute() {
             return this.$route.name === 'signup';
+        }
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('logout');
+            this.$router.push('/');
         }
     }
 });

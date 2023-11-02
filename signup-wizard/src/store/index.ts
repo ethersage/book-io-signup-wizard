@@ -87,6 +87,11 @@ const store = createStore({
                         reject(error);
                     });
             });
+        },
+
+        logout({commit}) {
+            commit('SET_USER', null);
+            commit('SET_FAVORITE_BOOK', null);
         }
     }
 });
