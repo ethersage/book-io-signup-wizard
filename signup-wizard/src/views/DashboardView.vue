@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import {goHome} from '@/router/navigate';
+import {doIfLoggedIn} from '@/router/navigate';
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
 
@@ -27,12 +27,10 @@ export default defineComponent({
     created() {
         const store = useStore();
 
-        if (!store.state.user) {
-            goHome(); // Navigate to login
-        } else {
+        doIfLoggedIn(() => {
             store.dispatch('fetchBooks');
             store.dispatch('fetchFavoriteBook');
-        }
+        });
     }
 });
 </script>
