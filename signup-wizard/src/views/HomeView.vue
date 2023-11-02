@@ -50,7 +50,6 @@ export default defineComponent({
                     username: this.credentials.username,
                     password: this.credentials.password
                 })
-                // this.login(this.credentials)
                 .then(() => {
                     this.$router.push('/dashboard');
                 })
