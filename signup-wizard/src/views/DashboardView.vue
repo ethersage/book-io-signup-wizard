@@ -24,34 +24,9 @@ export default defineComponent({
         };
     },
     created() {
-        // this.fetchBooks();
-        // this.fetchFavoriteBook();
         const store = useStore();
         store.dispatch('fetchBooks');
         store.dispatch('fetchFavoriteBook');
-    },
-    methods: {
-        // fetchBooks() {
-        //     // Replace with the actual API call
-        //     fetch('http://localhost:9000/books')
-        //         .then((response) => response.json())
-        //         .then((data) => {
-        //             this.books = data;
-        //         });
-        // },
-        // fetchFavoriteBook() {
-        //     // Replace 'currentUsername' with the actual username variable
-        //     let currentUsername = this.$store.state.user?.name;
-        //     if (currentUsername) {
-        //         fetch(
-        //             `http://localhost:9000/users/${currentUsername}/favorites`
-        //         )
-        //             .then((response) => response.json())
-        //             .then((data) => {
-        //                 this.favoriteBookId = data.favorites.book;
-        //             });
-        //     }
-        // }
     }
 });
 </script>

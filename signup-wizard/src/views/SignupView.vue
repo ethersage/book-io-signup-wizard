@@ -31,9 +31,9 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {useStore} from 'vuex';
 import newUser from '@/lib/new-user';
 import saveFavorite from '@/lib/save-favorite';
-import {useStore} from 'vuex';
 
 export default defineComponent({
     name: 'SignupView',
@@ -81,32 +81,11 @@ export default defineComponent({
                     console.error('Error during signup:', error);
                 });
         },
-        // fetchBooks() {
-        //     // TODO: show loading indicator if favorite books are not available yet
-        //     fetch('http://localhost:9000/books') // Adjust if your endpoint is different
-        //         .then((response) => {
-        //             if (!response.ok) {
-        //                 throw new Error('Network response was not ok');
-        //             }
-        //             return response.json();
-        //         })
-        //         .then((data) => {
-        //             this.books = data.data.books;
-        //             console.log(data.data.books);
-        //         })
-        //         .catch((error) => {
-        //             console.error(
-        //                 'There has been a problem with your fetch operation:',
-        //                 error
-        //             );
-        //         });
-        // },
         async saveFavoriteBook() {
             saveFavorite(this.username, this.favoriteBookId);
         }
     },
     created() {
-        // this.fetchBooks(); // Fetch books when component is created
         const store = useStore();
         store.dispatch('fetchBooks');
     }
