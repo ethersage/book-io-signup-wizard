@@ -55,7 +55,6 @@ export default defineComponent({
                     this.$router.push('/dashboard');
                 })
                 .catch((error) => {
-                    console.log('login failed');
                     console.error('Login failed:', error);
                     alert('Login failed, please try again.');
                 });

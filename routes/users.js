@@ -42,7 +42,7 @@ router
                 res.send({message: 'success'});
             })
             .catch((err) => {
-                console.log('error:', err);
+        console.error('error:', err);
                 res.sendStatus(400);
             });
     })
@@ -60,7 +60,7 @@ router
                 res.send(payload);
             })
             .catch((err) => {
-                console.log('error:', err);
+                console.error('error:', err);
                 res.sendStatus(500);
             });
     });

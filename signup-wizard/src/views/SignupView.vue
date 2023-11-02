@@ -26,6 +26,7 @@
 </template>
 
 <script lang="ts">
+import saveFavorite from '@/lib/save-favorite';
 import {defineComponent} from 'vue';
 
 export default defineComponent({
@@ -107,41 +108,8 @@ export default defineComponent({
                     );
                 });
         },
-        saveFavoriteBook() {
-            // Make sure the username and favoriteBookId are set
-            if (!this.username || !this.favoriteBookId) {
-                alert('Username and favorite book must be provided');
-                return;
-            }
-
-            // Construct the URL with the username
-            const url = `http://localhost:9000/users/${this.username}/favorites`;
-
-            // Construct the request payload
-            const payload = {
-                book: this.favoriteBookId
-            };
-
-            // Perform the POST request to save the favorite book
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Failed to save favorite book');
-                    }
-                    return response.json();
-                })
-                // .then((data) => {
-                //     console.log(data.message); // Handle the success response
-                // })
-                .catch((error) => {
-                    console.error('Error during saving favorite book:', error);
-                });
+        async saveFavoriteBook() {
+            saveFavorite(this.username, this.favoriteBookId);
         }
     },
     created() {

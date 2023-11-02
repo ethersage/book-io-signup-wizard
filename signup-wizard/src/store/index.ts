@@ -1,6 +1,12 @@
 // src/store/index.ts
 
+import newUser from '@/lib/new-user';
 import {createStore} from 'vuex';
+
+export interface Credentials {
+    username: string;
+    password: string;
+}
 
 export interface User {
     name: string;
@@ -19,7 +25,7 @@ export interface State {
 
 // Create a new store instance.
 const store = createStore({
-    state() {
+    state(): State {
         return {
             user: null, // This will hold the user data after a successful login
             books: [],
@@ -39,12 +45,9 @@ const store = createStore({
     },
     actions: {
         fetchBooks({commit}) {
-            console.log('fetching books');
             fetch('http://localhost:9000/books')
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log('committing books');
-                    console.log(data.data.books);
                     commit('SET_BOOKS', data.data.books); // Assuming the API returns an object with a books array
                 })
                 .catch((error) => {
@@ -92,6 +95,10 @@ const store = createStore({
         logout({commit}) {
             commit('SET_USER', null);
             commit('SET_FAVORITE_BOOK', null);
+        },
+
+        newUser({commit}, credentials: Credentials) {
+            newUser(credentials.username, credentials.password);
         }
     }
 });
