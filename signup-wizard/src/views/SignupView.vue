@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import Vue, {defineComponent} from 'vue';
+import {defineComponent} from 'vue';
 
 export default defineComponent({
     name: 'SignupView',
@@ -77,10 +77,10 @@ export default defineComponent({
                     }
                     return response.json();
                 })
-                .then((data) => {
+                .then(() => {
                     this.saveFavoriteBook();
                 })
-                .then((response) => {
+                .then(() => {
                     this.$router.push({name: 'home'}); // Navigate to login
                 })
                 .catch((error) => {

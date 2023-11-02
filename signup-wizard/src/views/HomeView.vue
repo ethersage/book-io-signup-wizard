@@ -26,17 +26,8 @@
 </template>
 
 <script lang="ts">
-import {User, State} from '@/store';
-import Vue, {defineComponent} from 'vue';
-import {mapActions, ActionContext, useStore} from 'vuex';
-
-// Define what your state looks like
-// TODO: move this elsewhere
-
-interface LoginCredentials {
-    username: string;
-    password: string;
-}
+import {defineComponent} from 'vue';
+import {mapActions, useStore} from 'vuex';
 
 export default defineComponent({
     setup() {
