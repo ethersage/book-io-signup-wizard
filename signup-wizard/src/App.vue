@@ -3,12 +3,9 @@
         <span v-if="!isSignupRoute && !$store.state.user"
             ><router-link to="/signup">Signup</router-link></span
         >
-    </nav>
-    <nav>
         <span v-if="$store.state.user">{{ $store.state.user.name }}</span>
-    </nav>
-    <nav>
         <span v-if="isLoggedIn"><a @click.prevent="logout">Log out</a></span>
+        <span v-if="canLogin"><router-link to="/">Login</router-link></span>
     </nav>
     <router-view />
 </template>
@@ -25,6 +22,10 @@ export default defineComponent({
 
         isSignupRoute() {
             return this.$route.name === 'signup';
+        },
+
+        canLogin(): boolean {
+            return !this.$store.state.user && this.$route.name !== 'home';
         }
     },
     methods: {
