@@ -32,9 +32,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import newUser from '@/api/new-user';
-import saveFavorite from '@/api/save-favorite';
 import {goHome} from '@/router/navigate';
+import signup from '@/api/signup';
 
 export default defineComponent({
     name: 'SignupView',
@@ -61,20 +60,12 @@ export default defineComponent({
             // TODO: check if user has been created first
 
             try {
-                await newUser(this.username, this.password);
-                await this.saveFavoriteBook();
+                await signup(this.username, this.password, this.favoriteBookId);
 
                 goHome(true);
             } catch (error) {
                 console.error('Error during signup:', error);
             }
-        },
-        async saveFavoriteBook() {
-            return saveFavorite(this.username, this.favoriteBookId).catch(
-                (error) => {
-                    console.error('Error during saving favorite book:', error);
-                }
-            );
         }
     },
     created() {

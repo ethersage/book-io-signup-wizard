@@ -28,7 +28,7 @@
 <script lang="ts">
 import {goToDashboard, goToDashboardIfLoggedIn} from '@/router/navigate';
 import {defineComponent} from 'vue';
-import {mapActions, useStore} from 'vuex';
+import {useStore} from 'vuex';
 
 export default defineComponent({
     setup() {
