@@ -1,11 +1,11 @@
 <template>
     <nav>
-        <span v-if="!isSignupRoute && !$store.state.user"
+        <span v-if="!isSignupRoute && !$store.state.user.name"
             ><router-link to="/signup">Signup</router-link></span
         >
     </nav>
     <nav>
-        <span v-if="$store.state.user">{{ $store.state.user }}</span>
+        <span v-if="$store.state.user">{{ $store.state.user.name }}</span>
     </nav>
     <nav>
         <span v-if="isLoggedIn"><a @click.prevent="logout">Log out</a></span>
@@ -19,7 +19,7 @@ import {defineComponent} from 'vue';
 export default defineComponent({
     name: 'AppView',
     computed: {
-        isLoggedIn() {
+        isLoggedIn(): boolean {
             return !!this.$store.state.user;
         },
 

@@ -1,6 +1,7 @@
 // src/store/index.ts
 
 import fetchBooks from '@/lib/fetch-books';
+import fetchFavorite from '@/lib/fetch-favorite';
 import newUser from '@/lib/new-user';
 import {createStore} from 'vuex';
 
@@ -56,16 +57,11 @@ const store = createStore({
         },
 
         fetchFavoriteBook({state, commit}) {
-            const username = state.user;
-            if (username) {
-                fetch(`http://localhost:9000/users/${username}/favorites`)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        commit('SET_FAVORITE_BOOK', data.data.favorites.book); // Adjust according to your API response structure
-                    })
-                    .catch((error) => {
-                        console.error('Error fetching favorite book:', error);
-                    });
+            const user = state.user;
+            if (user && user.name) {
+                fetchFavorite(user.name).then((data) => {
+                    commit('SET_FAVORITE_BOOK', data.data.favorites.book); // Adjust according to your API response structure
+                });
             }
         },
 
@@ -83,7 +79,7 @@ const store = createStore({
                         return response.json();
                     })
                     .then((data) => {
-                        commit('SET_USER', credentials.username);
+                        commit('SET_USER', {name: credentials.username});
                         resolve(data);
                     })
                     .catch((error) => {

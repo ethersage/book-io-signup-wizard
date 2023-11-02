@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard">
-        <h1>Welcome, {{ $store.state.user }}!</h1>
+        <h1>Welcome, {{ $store.state.user.name }}!</h1>
         <h1>fav book id = {{ $store.state.favoriteBookId }}</h1>
         <ul>
             <li v-for="book in $store.state.books" :key="book.id">

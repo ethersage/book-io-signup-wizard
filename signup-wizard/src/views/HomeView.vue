@@ -61,7 +61,6 @@ export default defineComponent({
         }
     },
     created() {
-        console.log(this.$store.state);
         if (this.$store.state.user) {
             this.$router.push({name: 'dashboard'});
         }
