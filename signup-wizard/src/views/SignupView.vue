@@ -34,6 +34,7 @@ import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
 import newUser from '@/api/new-user';
 import saveFavorite from '@/api/save-favorite';
+import {goHome} from '@/router/navigate';
 
 export default defineComponent({
     name: 'SignupView',
@@ -63,7 +64,7 @@ export default defineComponent({
                 await newUser(this.username, this.password);
                 await this.saveFavoriteBook();
 
-                this.$router.push({name: 'home'}); // Navigate to login
+                goHome();
             } catch (error) {
                 console.error('Error during signup:', error);
             }

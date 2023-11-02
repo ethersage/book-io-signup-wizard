@@ -12,6 +12,7 @@
 </template>
 
 <script lang="ts">
+import {goHome} from '@/router/navigate';
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
 
@@ -27,11 +28,11 @@ export default defineComponent({
         const store = useStore();
 
         if (!store.state.user) {
-            return this.$router.push({name: 'home'}); // Navigate to login
+            goHome(); // Navigate to login
+        } else {
+            store.dispatch('fetchBooks');
+            store.dispatch('fetchFavoriteBook');
         }
-
-        store.dispatch('fetchBooks');
-        store.dispatch('fetchFavoriteBook');
     }
 });
 </script>

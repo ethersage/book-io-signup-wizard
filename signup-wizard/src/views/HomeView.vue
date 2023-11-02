@@ -26,6 +26,7 @@
 </template>
 
 <script lang="ts">
+import {goToDashboard} from '@/router/navigate';
 import {defineComponent} from 'vue';
 import {mapActions, useStore} from 'vuex';
 
@@ -51,7 +52,7 @@ export default defineComponent({
                     password: this.credentials.password
                 });
 
-                this.$router.push('/dashboard');
+                goToDashboard();
             } catch (error) {
                 console.error('Login failed:', error);
                 alert('Login failed, please try again.');
@@ -60,7 +61,7 @@ export default defineComponent({
     },
     created() {
         if (this.$store.state.user) {
-            this.$router.push({name: 'dashboard'});
+            goToDashboard();
         }
     }
 });

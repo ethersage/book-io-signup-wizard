@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {goHome} from './router/navigate';
 
 export default defineComponent({
     name: 'AppView',
@@ -31,7 +32,7 @@ export default defineComponent({
     methods: {
         logout() {
             this.$store.dispatch('logout');
-            this.$router.push('/');
+            goHome();
         }
     }
 });
