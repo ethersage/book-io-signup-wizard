@@ -58,11 +58,6 @@ export default defineComponent({
         },
         completeSignup() {
             // TODO: check if user has been created first
-            console.log('Signup Completed:', {
-                username: this.username,
-                password: this.password,
-                favoriteBookId: this.favoriteBookId
-            });
 
             // Construct the request payload
             const payload = {
