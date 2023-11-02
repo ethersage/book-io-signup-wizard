@@ -32,8 +32,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
-import newUser from '@/lib/new-user';
-import saveFavorite from '@/lib/save-favorite';
+import newUser from '@/api/new-user';
+import saveFavorite from '@/api/save-favorite';
 
 export default defineComponent({
     name: 'SignupView',

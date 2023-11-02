@@ -1,9 +1,9 @@
 // src/store/index.ts
 
-import fetchBooks from '@/lib/fetch-books';
-import fetchFavorite from '@/lib/fetch-favorite';
-import login from '@/lib/login';
-import newUser from '@/lib/new-user';
+import fetchBooks from '@/api/fetch-books';
+import fetchFavorite from '@/api/fetch-favorite';
+import login from '@/api/login';
+import newUser from '@/api/new-user';
 import {createStore} from 'vuex';
 
 export interface Credentials {
