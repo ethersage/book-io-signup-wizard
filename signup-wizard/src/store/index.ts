@@ -26,11 +26,10 @@ export interface State {
     favoriteBookId: string | null;
 }
 
-// Create a new store instance.
 const store = createStore({
     state(): State {
         return {
-            user: null, // This will hold the user data after a successful login
+            user: null,
             books: [],
             favoriteBookId: null
         };
@@ -50,7 +49,7 @@ const store = createStore({
         fetchBooks({commit}) {
             fetchBooks()
                 .then((data) => {
-                    commit('SET_BOOKS', data.data.books); // Assuming the API returns an object with a books array
+                    commit('SET_BOOKS', data.data.books);
                 })
                 .catch((error) => {
                     console.error('Error fetching books:', error);
@@ -61,7 +60,7 @@ const store = createStore({
             const user = state.user;
             if (user && user.name) {
                 fetchFavorite(user.name).then((data) => {
-                    commit('SET_FAVORITE_BOOK', data.data.favorites.book); // Adjust according to your API response structure
+                    commit('SET_FAVORITE_BOOK', data.data.favorites.book);
                 });
             }
         },

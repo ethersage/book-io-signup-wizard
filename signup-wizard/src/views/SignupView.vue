@@ -59,7 +59,6 @@ export default defineComponent({
         completeSignup() {
             // TODO: check if user has been created first
 
-            // Construct the request payload
             const payload = {
                 username: this.username,
                 password: this.password
