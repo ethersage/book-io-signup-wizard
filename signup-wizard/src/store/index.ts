@@ -2,6 +2,7 @@
 
 import fetchBooks from '@/lib/fetch-books';
 import fetchFavorite from '@/lib/fetch-favorite';
+import login from '@/lib/login';
 import newUser from '@/lib/new-user';
 import {createStore} from 'vuex';
 
@@ -67,17 +68,7 @@ const store = createStore({
 
         login({commit}, credentials) {
             return new Promise((resolve, reject) => {
-                fetch('http://localhost:9000/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(credentials)
-                })
-                    .then((response) => {
-                        if (!response.ok) throw new Error('Login failed');
-                        return response.json();
-                    })
+                login(credentials.username, credentials.password)
                     .then((data) => {
                         commit('SET_USER', {name: credentials.username});
                         resolve(data);
