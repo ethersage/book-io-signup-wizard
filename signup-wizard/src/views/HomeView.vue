@@ -1,155 +1,80 @@
 <template>
-    <div class="signup-view">
-        <div v-if="step === 1">
-            <h2>Step 1: Enter Username and Password</h2>
+    <div>
+        <h1>Login</h1>
+        <form @submit.prevent="loginUser">
             <div>
                 <label for="username">Username:</label>
-                <input type="text" v-model="username" id="username" />
+                <input
+                    type="text"
+                    id="username"
+                    v-model="credentials.username"
+                    required
+                />
             </div>
             <div>
                 <label for="password">Password:</label>
-                <input type="password" v-model="password" id="password" />
+                <input
+                    type="password"
+                    id="password"
+                    v-model="credentials.password"
+                    required
+                />
             </div>
-            <button @click="nextStep">Next</button>
-        </div>
-
-        <div v-if="step === 2">
-            <h2>Step 2: Select Your Favorite Book</h2>
-            <select v-model="favoriteBookId">
-                <option v-for="book in books" :key="book.id" :value="book.id">
-                    {{ book.title }}
-                </option>
-            </select>
-            <button @click="completeSignup">Complete Signup</button>
-        </div>
+            <button type="submit">Login</button>
+        </form>
     </div>
 </template>
 
 <script lang="ts">
+import {User, State} from '@/store';
 import Vue, {defineComponent} from 'vue';
+import {mapActions, ActionContext, useStore} from 'vuex';
+
+// Define what your state looks like
+// TODO: move this elsewhere
+
+interface LoginCredentials {
+    username: string;
+    password: string;
+}
 
 export default defineComponent({
-    name: 'SignupView',
+    setup() {
+        const store = useStore();
+        return {store};
+    },
     data() {
         return {
-            step: 1 as number,
-            username: '' as string,
-            password: '' as string,
-            favoriteBookId: '' as string,
-            books: [] as Array<{
-                id: number;
-                title: string;
-                author: string;
-                description: string;
-                cover_url: string;
-            }>
+            credentials: {
+                username: '',
+                password: ''
+            }
         };
     },
     methods: {
-        nextStep() {
-            this.step++;
-        },
-        completeSignup() {
-            // TODO: check if user has been created first
-            console.log('Signup Completed:', {
-                username: this.username,
-                password: this.password,
-                favoriteBookId: this.favoriteBookId
-            });
-
-            // Construct the request payload
-            const payload = {
-                username: this.username,
-                password: this.password
-            };
-
-            // Perform the POST request to the signup endpoint
-            fetch('http://localhost:9000/users/new', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Signup failed');
-                    }
-                    return response.json();
+        ...mapActions('auth', ['login']),
+        loginUser() {
+            this.store
+                .dispatch('login', {
+                    username: this.credentials.username,
+                    password: this.credentials.password
                 })
-                .then((data) => {
-                    this.saveFavoriteBook();
-                })
-                .then((response) => {
-                    this.$router.push({name: 'login'}); // Navigate to login
+                // this.login(this.credentials)
+                .then(() => {
+                    this.$router.push('/dashboard');
                 })
                 .catch((error) => {
-                    console.error('Error during signup:', error);
-                });
-        },
-        fetchBooks() {
-            // TODO: show loading indicator if favorite books are not available yet
-            fetch('http://localhost:9000/books') // Adjust if your endpoint is different
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    this.books = data.data.books;
-                    console.log(data.data.books);
-                })
-                .catch((error) => {
-                    console.error(
-                        'There has been a problem with your fetch operation:',
-                        error
-                    );
-                });
-        },
-        saveFavoriteBook() {
-            // Make sure the username and favoriteBookId are set
-            if (!this.username || !this.favoriteBookId) {
-                alert('Username and favorite book must be provided');
-                return;
-            }
-
-            // Construct the URL with the username
-            const url = `http://localhost:9000/users/${this.username}/favorites`;
-
-            // Construct the request payload
-            const payload = {
-                book: this.favoriteBookId
-            };
-
-            // Perform the POST request to save the favorite book
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Failed to save favorite book');
-                    }
-                    return response.json();
-                })
-                // .then((data) => {
-                //     console.log(data.message); // Handle the success response
-                // })
-                .catch((error) => {
-                    console.error('Error during saving favorite book:', error);
+                    console.log('login failed');
+                    console.error('Login failed:', error);
+                    alert('Login failed, please try again.');
                 });
         }
     },
     created() {
-        this.fetchBooks(); // Fetch books when component is created
+        console.log(this.$store.state);
+        if (this.$store.state.user) {
+            this.$router.push({name: 'dashboard'});
+        }
     }
 });
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>

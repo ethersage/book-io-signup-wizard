@@ -1,7 +1,28 @@
 <template>
-    <nav><router-link to="/">Signup</router-link></nav>
+    <nav>
+        <span v-if="!isSignupRoute && !$store.state.user"
+            ><router-link to="/signup">Signup</router-link></span
+        >
+    </nav>
+    <nav>
+        <span v-if="$store.state.user">{{ $store.state.user }}</span>
+    </nav>
     <router-view />
 </template>
+
+<script lang="ts">
+import {defineComponent} from 'vue';
+import {useStore} from 'vuex';
+
+export default defineComponent({
+    name: 'AppView',
+    computed: {
+        isSignupRoute() {
+            return this.$route.name === 'signup';
+        }
+    }
+});
+</script>
 
 <style lang="scss">
 #app {
