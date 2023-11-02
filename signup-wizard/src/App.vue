@@ -1,9 +1,9 @@
 <template>
     <nav>
-        <span v-if="!isSignupRoute && !$store.state.user"
+        <span v-if="canSignup"
             ><router-link to="/signup">Signup</router-link></span
         >
-        <span v-if="$store.state.user">{{ $store.state.user.name }}</span>
+        <span v-if="isLoggedIn">{{ $store.state.user.name }}</span>
         <span v-if="isLoggedIn"><a @click.prevent="logout">Log out</a></span>
         <span v-if="canLogin"><router-link to="/">Login</router-link></span>
     </nav>
@@ -13,20 +13,21 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {goHome} from './router/navigate';
+import {canLogin, canSignup, isLoggedIn} from './store/helpers';
 
 export default defineComponent({
     name: 'AppView',
     computed: {
+        canLogin() {
+            return canLogin();
+        },
+
+        canSignup() {
+            return canSignup();
+        },
+
         isLoggedIn(): boolean {
-            return !!this.$store.state.user;
-        },
-
-        isSignupRoute() {
-            return this.$route.name === 'signup';
-        },
-
-        canLogin(): boolean {
-            return !this.$store.state.user && this.$route.name !== 'home';
+            return isLoggedIn();
         }
     },
     methods: {
