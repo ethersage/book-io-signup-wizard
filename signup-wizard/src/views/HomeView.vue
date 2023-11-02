@@ -44,7 +44,6 @@ export default defineComponent({
         };
     },
     methods: {
-        ...mapActions('auth', ['login']),
         async loginUser() {
             try {
                 await this.store.dispatch('login', {
