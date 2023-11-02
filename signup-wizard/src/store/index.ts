@@ -1,5 +1,6 @@
 // src/store/index.ts
 
+import fetchBooks from '@/lib/fetch-books';
 import newUser from '@/lib/new-user';
 import {createStore} from 'vuex';
 
@@ -45,8 +46,7 @@ const store = createStore({
     },
     actions: {
         fetchBooks({commit}) {
-            fetch('http://localhost:9000/books')
-                .then((response) => response.json())
+            fetchBooks()
                 .then((data) => {
                     commit('SET_BOOKS', data.data.books); // Assuming the API returns an object with a books array
                 })
