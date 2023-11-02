@@ -56,24 +56,17 @@ export default defineComponent({
         nextStep() {
             this.step++;
         },
-        completeSignup() {
+        async completeSignup() {
             // TODO: check if user has been created first
 
-            const payload = {
-                username: this.username,
-                password: this.password
-            };
+            try {
+                await newUser(this.username, this.password);
+                await this.saveFavoriteBook();
 
-            newUser(this.username, this.password)
-                .then(() => {
-                    this.saveFavoriteBook();
-                })
-                .then(() => {
-                    this.$router.push({name: 'home'}); // Navigate to login
-                })
-                .catch((error) => {
-                    console.error('Error during signup:', error);
-                });
+                this.$router.push({name: 'home'}); // Navigate to login
+            } catch (error) {
+                console.error('Error during signup:', error);
+            }
         },
         async saveFavoriteBook() {
             return saveFavorite(this.username, this.favoriteBookId).catch(

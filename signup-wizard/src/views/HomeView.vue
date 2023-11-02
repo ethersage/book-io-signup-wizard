@@ -44,19 +44,18 @@ export default defineComponent({
     },
     methods: {
         ...mapActions('auth', ['login']),
-        loginUser() {
-            this.store
-                .dispatch('login', {
+        async loginUser() {
+            try {
+                await this.store.dispatch('login', {
                     username: this.credentials.username,
                     password: this.credentials.password
-                })
-                .then(() => {
-                    this.$router.push('/dashboard');
-                })
-                .catch((error) => {
-                    console.error('Login failed:', error);
-                    alert('Login failed, please try again.');
                 });
+
+                this.$router.push('/dashboard');
+            } catch (error) {
+                console.error('Login failed:', error);
+                alert('Login failed, please try again.');
+            }
         }
     },
     created() {

@@ -46,40 +46,40 @@ const store = createStore({
         }
     },
     actions: {
-        fetchBooks({commit}) {
-            fetchBooks()
-                .then((books) => {
-                    commit('SET_BOOKS', books);
-                })
-                .catch((error) => {
-                    console.error('Error fetching books:', error);
-                });
-        },
-
-        fetchFavoriteBook({state, commit}) {
-            const user = state.user;
-            if (user && user.name) {
-                fetchFavorite(user.name)
-                    .then((favorite) => {
-                        commit('SET_FAVORITE_BOOK', favorite);
-                    })
-                    .catch((error) => {
-                        console.error('Error fetching favorite book:', error);
-                    });
+        async fetchBooks({commit}) {
+            try {
+                const books = await fetchBooks();
+                commit('SET_BOOKS', books);
+            } catch (error) {
+                console.error('Error fetching books:', error);
             }
         },
 
-        login({commit}, credentials) {
-            return new Promise((resolve, reject) => {
-                login(credentials.username, credentials.password)
-                    .then((data) => {
-                        commit('SET_USER', {name: credentials.username});
-                        resolve(data);
-                    })
-                    .catch((error) => {
-                        reject(error);
-                    });
-            });
+        async fetchFavoriteBook({state, commit}) {
+            const user = state.user;
+            if (user && user.name) {
+                try {
+                    const favorite = await fetchFavorite(user.name);
+
+                    commit('SET_FAVORITE_BOOK', favorite);
+                } catch (error) {
+                    console.error('Error fetching favorite book:', error);
+                }
+            }
+        },
+
+        async login({commit}, credentials) {
+            try {
+                const data = await login(
+                    credentials.username,
+                    credentials.password
+                );
+
+                commit('SET_USER', {name: credentials.username});
+                return data;
+            } catch (error) {
+                console.error(error);
+            }
         },
 
         logout({commit}) {
@@ -87,8 +87,8 @@ const store = createStore({
             commit('SET_FAVORITE_BOOK', null);
         },
 
-        newUser({commit}, credentials: Credentials) {
-            newUser(credentials.username, credentials.password);
+        async newUser(_, credentials: Credentials) {
+            await newUser(credentials.username, credentials.password);
         }
     }
 });
