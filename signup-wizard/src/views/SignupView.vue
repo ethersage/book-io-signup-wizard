@@ -26,6 +26,7 @@
 </template>
 
 <script lang="ts">
+import newUser from '@/lib/new-user';
 import saveFavorite from '@/lib/save-favorite';
 import {defineComponent} from 'vue';
 
@@ -64,20 +65,7 @@ export default defineComponent({
                 password: this.password
             };
 
-            // Perform the POST request to the signup endpoint
-            fetch('http://localhost:9000/users/new', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Signup failed');
-                    }
-                    return response.json();
-                })
+            newUser(this.username, this.password)
                 .then(() => {
                     this.saveFavoriteBook();
                 })
