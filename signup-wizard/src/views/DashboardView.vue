@@ -25,6 +25,11 @@ export default defineComponent({
     },
     created() {
         const store = useStore();
+
+        if (!store.state.user) {
+            return this.$router.push({name: 'home'}); // Navigate to login
+        }
+
         store.dispatch('fetchBooks');
         store.dispatch('fetchFavoriteBook');
     }
