@@ -206,6 +206,10 @@ ul {
     text-align: left;
 }
 
+li {
+    margin-top: 5px;
+}
+
 .right {
     margin-left: auto;
 }
