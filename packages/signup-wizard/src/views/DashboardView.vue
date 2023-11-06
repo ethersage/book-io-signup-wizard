@@ -45,6 +45,15 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.dashboard h1 {
+    text-align: left;
+    white-space: nowrap; /* Prevents the text from wrapping */
+    overflow: hidden; /* Ensures the overflow is hidden */
+    text-overflow: ellipsis; /* Adds an ellipsis (...) after the text gets truncated */
+    max-width: 300px; /* Set to the maximum width that you want for your usernames */
+    display: inline-block; /* or 'block' depending on your layout */
+}
+
 .book {
     padding: 5px 20px;
 }

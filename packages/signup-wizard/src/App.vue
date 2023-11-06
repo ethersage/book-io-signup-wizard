@@ -188,6 +188,15 @@ nav {
     display: flex;
     align-items: center;
 
+    * {
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+        display: inline-block;
+    }
+
     a {
         font-weight: bold;
         color: #2c3e50;
