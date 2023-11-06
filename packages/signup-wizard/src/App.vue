@@ -195,6 +195,15 @@ body {
     margin: auto;
 }
 
+nav {
+    display: flex;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
 .button {
     padding: 10px 25px;
     font-size: 16px;
@@ -236,7 +245,8 @@ body {
     margin-top: 15px;
 }
 
-.form input {
+.form input,
+.form label {
     margin-top: 5px;
     padding: 5px;
     border-radius: 5px;

@@ -1,5 +1,6 @@
 <template>
     <div class="signup-view">
+        <h1>Signup</h1>
         <div v-if="step === 1">
             <h2>Step 1: Enter Username and Password</h2>
             <div class="form">
@@ -25,16 +26,18 @@
 
         <div v-if="step === 2">
             <h2>Step 2: Select Your Favorite Book</h2>
-            <select v-model="favoriteBookId">
-                <option
-                    v-for="book in $store.state.books"
-                    :key="book.id"
-                    :value="book.id"
-                >
-                    {{ book.title }}
-                </option>
-            </select>
-            <button @click="completeSignup">Complete Signup</button>
+            <div class="form">
+                <select v-model="favoriteBookId">
+                    <option
+                        v-for="book in $store.state.books"
+                        :key="book.id"
+                        :value="book.id"
+                    >
+                        {{ book.title }}
+                    </option>
+                </select>
+                <button class="button submit-button" @click="completeSignup">Complete Signup</button>
+            </div>
         </div>
     </div>
 </template>
