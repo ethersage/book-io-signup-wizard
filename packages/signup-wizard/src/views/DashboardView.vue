@@ -2,7 +2,7 @@
     <div class="dashboard">
         <h1>Welcome, {{ $store.state.user && $store.state.user.name }}!</h1>
         <h2>Your books:</h2>
-        <ul>
+        <ul class="books">
             <li
                 class="book"
                 :class="{'fav-book': book.id === $store.state.favoriteBookId}"
@@ -61,6 +61,12 @@ export default defineComponent({
 .dashboard h2 {
     text-decoration: underline;
     margin: 15px 0 10px 0;
+}
+
+.books {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 15px;
 }
 
 .book {
