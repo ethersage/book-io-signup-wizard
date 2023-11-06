@@ -1,6 +1,7 @@
 <template>
     <div class="dashboard">
         <h1>Welcome, {{ $store.state.user && $store.state.user.name }}!</h1>
+        <h2>Your books:</h2>
         <ul>
             <li
                 class="book"
@@ -45,13 +46,21 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.dashboard {
+    text-align: left;
+}
+
 .dashboard h1 {
     text-align: left;
-    white-space: nowrap; /* Prevents the text from wrapping */
-    overflow: hidden; /* Ensures the overflow is hidden */
-    text-overflow: ellipsis; /* Adds an ellipsis (...) after the text gets truncated */
-    max-width: 300px; /* Set to the maximum width that you want for your usernames */
-    display: inline-block; /* or 'block' depending on your layout */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+}
+
+.dashboard h2 {
+    text-decoration: underline;
+    margin: 15px 0 10px 0;
 }
 
 .book {
