@@ -172,6 +172,8 @@ table {
     border-spacing: 0;
 }
 
+/* end CSS reset */
+
 #app {
     font-family: Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -182,6 +184,8 @@ table {
 
 nav {
     padding: 30px;
+    display: flex;
+    align-items: center;
 
     a {
         font-weight: bold;
@@ -193,13 +197,13 @@ nav {
     }
 }
 
+
 body {
     margin: auto;
 }
 
-nav {
-    display: flex;
-    align-items: center;
+ul {
+    text-align: left;
 }
 
 .right {
