@@ -180,10 +180,11 @@ table {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    margin: 25px;
 }
 
 nav {
-    padding: 30px;
+    padding: 30px 0;
     display: flex;
     align-items: center;
 
@@ -196,7 +197,6 @@ nav {
         }
     }
 }
-
 
 body {
     margin: auto;
