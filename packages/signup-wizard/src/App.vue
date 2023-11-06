@@ -1,11 +1,13 @@
 <template>
     <nav>
-        <span v-if="canSignup"
+        <span class="right" v-if="canSignup"
             ><router-link to="/signup">Signup</router-link></span
         >
         <span v-if="isLoggedIn">{{ $store.state.user.name }}</span>
-        <span v-if="isLoggedIn"><a @click.prevent="logout">Log out</a></span>
         <span v-if="canLogin"><router-link to="/">Login</router-link></span>
+        <span class="right" v-if="isLoggedIn"
+            ><a @click.prevent="logout">Log out</a></span
+        >
     </nav>
     <router-view />
 </template>
@@ -197,6 +199,11 @@ body {
 
 nav {
     display: flex;
+    align-items: center;
+}
+
+.right {
+    margin-left: auto;
 }
 
 h1 {
