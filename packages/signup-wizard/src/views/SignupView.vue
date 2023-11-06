@@ -36,7 +36,9 @@
                         {{ book.title }}
                     </option>
                 </select>
-                <button class="button submit-button" @click="completeSignup">Complete Signup</button>
+                <button class="button submit-button" @click="completeSignup">
+                    Complete Signup
+                </button>
             </div>
         </div>
     </div>

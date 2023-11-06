@@ -246,9 +246,33 @@ h1 {
 }
 
 .form input,
-.form label {
+.form label,
+.form select {
     margin-top: 5px;
     padding: 5px;
     border-radius: 5px;
+}
+
+select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-family: 'Open Sans', sans-serif; /* You can replace this with your chosen font */
+    font-size: 16px;
+    color: #333;
+    -webkit-appearance: none; /* Removes default Chrome and Safari style */
+    -moz-appearance: none; /* Removes default style Firefox */
+    appearance: none; /* Remove default arrow icon in IE10 and IE11 */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="12px" height="12px" viewBox="0 0 4 5" xmlns="http://www.w3.org/2000/svg"><path fill="%23333" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+    background-repeat: no-repeat, repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;
+}
+
+/* Style focus state */
+select {
+    border-color: #666;
+    outline: none;
 }
 </style>
