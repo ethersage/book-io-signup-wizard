@@ -4,11 +4,23 @@
             <h2>Step 1: Enter Username and Password</h2>
             <div class="form">
                 <label for="username">Username:</label>
-                <input type="text" v-model="username" id="username" />
+                <input
+                    type="text"
+                    v-model="username"
+                    id="username"
+                    placeholder="Username"
+                />
                 <label for="password">Password:</label>
-                <input type="password" v-model="password" id="password" />
+                <input
+                    type="password"
+                    v-model="password"
+                    id="password"
+                    placeholder="Password"
+                />
+                <button class="button submit-button" @click="nextStep">
+                    Next
+                </button>
             </div>
-            <button class="button" @click="nextStep">Next</button>
         </div>
 
         <div v-if="step === 2">

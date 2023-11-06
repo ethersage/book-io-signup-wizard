@@ -219,4 +219,26 @@ body {
     background-color: #004085;
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    max-width: 200px;
+    margin: 10px auto;
+    padding: 10px 20px 20px 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.form > label,
+.submit-button {
+    margin-top: 15px;
+}
+
+.form input {
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
 </style>
