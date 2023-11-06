@@ -1,4 +1,3 @@
-<!-- StepTwo.vue -->
 <template>
     <div class="form-step">
         <h2>Step 2: Select Your Favorite Book</h2>
@@ -8,7 +7,7 @@
                     {{ book.title }}
                 </option>
             </select>
-            <button class="button submit-button" @click="submitStepTwo">
+            <button class="button submit-button" @click="submit">
                 Complete Signup
             </button>
         </div>
@@ -31,8 +30,8 @@ export default {
         }
     },
     methods: {
-        submitStepTwo() {
-            this.$emit('complete', {favoriteBookId: this.favoriteBookId});
+        submit() {
+            this.$emit('advance', {favoriteBookId: this.favoriteBookId});
         }
     }
 };

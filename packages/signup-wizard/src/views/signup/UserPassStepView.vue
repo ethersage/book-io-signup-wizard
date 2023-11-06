@@ -16,9 +16,7 @@
                 id="password"
                 placeholder="Password"
             />
-            <button class="button submit-button" @click="submitStepOne">
-                Next
-            </button>
+            <button class="button submit-button" @click="submit">Next</button>
         </div>
     </div>
 </template>
@@ -32,7 +30,7 @@ export default {
         };
     },
     methods: {
-        submitStepOne() {
+        submit() {
             this.$emit('advance', {
                 username: this.username,
                 password: this.password

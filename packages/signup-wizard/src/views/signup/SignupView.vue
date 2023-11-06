@@ -3,7 +3,7 @@
     <div class="signup-view">
         <h1>Signup</h1>
         <StepOne v-if="step === 1" @advance="handleUserPass" />
-        <StepTwo v-if="step === 2" @complete="handleChooseFavorite" />
+        <StepTwo v-if="step === 2" @advance="handleChooseFavorite" />
     </div>
 </template>
 
