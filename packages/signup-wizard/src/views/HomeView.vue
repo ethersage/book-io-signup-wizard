@@ -2,25 +2,25 @@
     <div>
         <h1>Login</h1>
         <form @submit.prevent="loginUser">
-            <div>
+            <div class="form">
                 <label for="username">Username:</label>
                 <input
                     type="text"
                     id="username"
                     v-model="credentials.username"
                     required
+                    placeholder="Username"
                 />
-            </div>
-            <div>
                 <label for="password">Password:</label>
                 <input
                     type="password"
                     id="password"
                     v-model="credentials.password"
                     required
+                    placeholder="Password"
                 />
+                <button class="button login-button" type="submit">Login</button>
             </div>
-            <button type="submit">Login</button>
         </form>
     </div>
 </template>
@@ -63,3 +63,27 @@ export default defineComponent({
     }
 });
 </script>
+
+<style scoped>
+.form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    max-width: 200px;
+    margin: 10px auto;
+    padding: 10px 20px 20px 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.form > label,
+.login-button {
+    margin-top: 15px;
+}
+
+.form input {
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+</style>

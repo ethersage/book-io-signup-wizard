@@ -2,15 +2,13 @@
     <div class="signup-view">
         <div v-if="step === 1">
             <h2>Step 1: Enter Username and Password</h2>
-            <div>
+            <div class="form">
                 <label for="username">Username:</label>
                 <input type="text" v-model="username" id="username" />
-            </div>
-            <div>
                 <label for="password">Password:</label>
                 <input type="password" v-model="password" id="password" />
             </div>
-            <button @click="nextStep">Next</button>
+            <button class="button" @click="nextStep">Next</button>
         </div>
 
         <div v-if="step === 2">
@@ -77,4 +75,8 @@ export default defineComponent({
 
 <style scoped>
 /* Add your styles here */
+.form {
+    display: flex;
+    flex-direction: column;
+}
 </style>
