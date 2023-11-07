@@ -49,17 +49,8 @@ const store = createStore({
             commit('SET_BOOKS', books);
         },
 
-        async fetchFavoriteBook({state, commit}) {
-            const user = state.user;
-            if (user && user.name) {
-                try {
-                    const favorite = await fetchFavorite(user.name);
-
-                    commit('SET_FAVORITE_BOOK', favorite);
-                } catch (error) {
-                    console.error('Error fetching favorite book:', error);
-                }
-            }
+        async fetchFavoriteBook({state, commit}, favoriteBookId) {
+                    commit('SET_FAVORITE_BOOK', favoriteBookId);
         },
 
         async login({commit}, username) {

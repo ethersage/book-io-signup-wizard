@@ -25,8 +25,8 @@ export function dispatchSetBooks(books: Book) {
     store.dispatch('setBooks', books);
 }
 
-export function dispatchFetchFavorite() {
-    store.dispatch('fetchFavoriteBook');
+export function dispatchSetFavorite(favoriteBookId: string) {
+    store.dispatch('setFavoriteBook', favoriteBookId);
 }
 
 export function dispatchLogout() {
