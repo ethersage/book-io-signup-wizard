@@ -1,4 +1,3 @@
-import {useStore} from 'vuex';
 import apiLogin from '../api/login';
 import {clearUser, getUser, setUser} from './storage';
 import {goHome, goToDashboard} from '@/router/navigate';

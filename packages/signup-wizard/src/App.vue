@@ -14,7 +14,6 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {goHome} from './router/navigate';
 import {canLogin, canSignup, isLoggedIn} from './store/helpers';
 import {logout} from './lib/auth';
 
