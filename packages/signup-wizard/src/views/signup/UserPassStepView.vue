@@ -1,5 +1,5 @@
 <template>
-    <div class="form-step">
+    <form class="form-step" @submit.prevent="submit">
         <h2>Step 1: Enter Username and Password</h2>
         <div class="form">
             <label for="username">Username:</label>
@@ -8,6 +8,7 @@
                 v-model="username"
                 id="username"
                 placeholder="Username"
+                v-autofocus
             />
             <div v-if="showUserError" class="error">
                 Please select a username.
@@ -22,9 +23,9 @@
             <div v-if="showPassError" class="error">
                 Please select a password to continue.
             </div>
-            <button class="button submit-button" @click="submit">Next</button>
+            <button class="button submit-button" type="submit">Next</button>
         </div>
-    </div>
+    </form>
 </template>
 
 <script>

@@ -1,20 +1,20 @@
 <template>
-    <div class="form-step">
+    <form class="form-step" @submit.prevent="submit">
         <h2>Step 2: Select Your Favorite Book</h2>
         <div v-if="showError" class="error">
             Please select a book to continue.
         </div>
         <div class="form">
-            <select v-model="favoriteBookId">
+            <select v-model="favoriteBookId" v-autofocus>
                 <option v-for="book in books" :key="book.id" :value="book.id">
                     {{ book.title }}
                 </option>
             </select>
-            <button class="button submit-button" @click="submit">
+            <button class="button submit-button" type="submit">
                 Complete Signup
             </button>
         </div>
-    </div>
+    </form>
 </template>
 
 <script>

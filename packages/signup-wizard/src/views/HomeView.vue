@@ -15,6 +15,7 @@
                     v-model="credentials.username"
                     required
                     placeholder="Username"
+                    v-autofocus
                 />
                 <label for="password">Password:</label>
                 <input
