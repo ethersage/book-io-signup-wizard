@@ -1,7 +1,5 @@
 // src/store/index.ts
 
-import fetchBooks from '@/lib/api/fetch-books';
-import fetchFavorite from '@/lib/api/fetch-favorite';
 import newUser from '@/lib/api/new-user';
 import {createStore} from 'vuex';
 
@@ -49,8 +47,9 @@ const store = createStore({
             commit('SET_BOOKS', books);
         },
 
-        async fetchFavoriteBook({state, commit}, favoriteBookId) {
-                    commit('SET_FAVORITE_BOOK', favoriteBookId);
+        async setFavoriteBook({commit}, favoriteBookId) {
+            console.log(favoriteBookId);
+            commit('SET_FAVORITE_BOOK', favoriteBookId);
         },
 
         async login({commit}, username) {
