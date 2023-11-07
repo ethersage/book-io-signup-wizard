@@ -3,6 +3,9 @@
         <h1>Login</h1>
         <p v-if="successMessage" class="success">{{ successMessage }}</p>
         <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+        <p v-if="networkErrorMessage" class="error">
+            {{ networkErrorMessage }}
+        </p>
         <form @submit.prevent="loginUser">
             <div class="form">
                 <label for="username">Username:</label>
@@ -60,15 +63,21 @@ export default defineComponent({
             credentials: {
                 username: '',
                 password: ''
-            }
+            },
+            networkErrorMessage: ''
         };
     },
     methods: {
         async loginUser() {
-            await performLogin(
-                this.credentials.username,
-                this.credentials.password
-            );
+            try {
+                await performLogin(
+                    this.credentials.username,
+                    this.credentials.password
+                );
+            } catch (error) {
+                console.error(error);
+                this.networkErrorMessage = 'Login failed, please try again.';
+            }
         }
     },
     created() {
