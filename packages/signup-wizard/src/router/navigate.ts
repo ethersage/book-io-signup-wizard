@@ -7,7 +7,9 @@ export interface GoHomeArgs {
     success?: boolean;
 }
 
-export function goHome(args = {replace: false, success: undefined}) {
+export function goHome(
+    args: GoHomeArgs = {replace: false, success: undefined}
+) {
     const routerArgs: RouteLocationRaw = {name: 'home'};
 
     if (args.success !== undefined) {

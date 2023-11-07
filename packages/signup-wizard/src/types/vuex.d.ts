@@ -8,7 +8,7 @@ declare module '@vue/runtime-core' {
             name: string;
         };
         favoriteBookId: string;
-        books: Book[]
+        books: Book[];
     }
 
     // Provide typings for `this.$store`

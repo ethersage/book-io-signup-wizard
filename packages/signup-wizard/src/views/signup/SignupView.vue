@@ -11,12 +11,15 @@
 import {goHome} from '@/router/navigate';
 import signup from '@/lib/api/signup';
 
-import StepOne from './UserPassStepView.vue';
-import StepTwo from './ChooseFavoriteView.vue';
+import UserPassStep from './UserPassStepView.vue';
+import ChooseFavorite from './ChooseFavoriteView.vue';
 import {getBooks} from '@/lib/books';
 
-export default {
-    components: {StepOne, StepTwo},
+import type {Credentials} from '@/store';
+import {defineComponent} from 'vue';
+
+export default defineComponent({
+    components: {StepOne: UserPassStep, StepTwo: ChooseFavorite},
     data() {
         return {
             step: 1 as number,
@@ -33,20 +36,19 @@ export default {
         };
     },
     methods: {
-        handleUserPass(data) {
+        handleUserPass(data: Credentials) {
             this.username = data.username;
             this.password = data.password;
 
-            // Update shared state
             this.step++;
         },
-        async handleChooseFavorite(data) {
+        async handleChooseFavorite(data: {favoriteBookId: string}) {
             // TODO: check if user has been created first
 
             this.favoriteBookId = data.favoriteBookId;
 
             try {
-                await signup(this.username, this.password, this.favoriteBookId);
+                await signup(this.username, this.password, data.favoriteBookId);
 
                 goHome({replace: true, success: true});
             } catch (error) {
@@ -58,5 +60,5 @@ export default {
     created() {
         getBooks();
     }
-};
+});
 </script>
