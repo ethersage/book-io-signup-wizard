@@ -8,13 +8,12 @@
 </template>
 
 <script lang="ts">
-import {useStore} from 'vuex';
-
 import {goHome} from '@/router/navigate';
 import signup from '@/lib/api/signup';
 
 import StepOne from './UserPassStepView.vue';
 import StepTwo from './ChooseFavoriteView.vue';
+import {getBooks} from '@/lib/books';
 
 export default {
     components: {StepOne, StepTwo},
@@ -57,8 +56,7 @@ export default {
         }
     },
     created() {
-        const store = useStore();
-        store.dispatch('fetchBooks');
+        getBooks();
     }
 };
 </script>

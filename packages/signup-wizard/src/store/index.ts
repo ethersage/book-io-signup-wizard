@@ -48,7 +48,6 @@ const store = createStore({
         },
 
         async setFavoriteBook({commit}, favoriteBookId) {
-            console.log(favoriteBookId);
             commit('SET_FAVORITE_BOOK', favoriteBookId);
         },
 
