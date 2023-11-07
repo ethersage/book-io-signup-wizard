@@ -17,7 +17,7 @@
     </form>
 </template>
 
-<script>
+<script lang="ts">
 import {useStore} from 'vuex';
 
 export default {
