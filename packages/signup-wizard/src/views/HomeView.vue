@@ -83,11 +83,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.error {
-    color: red;
-}
-.success {
-    color: green;
-}
-</style>
+<style scoped></style>

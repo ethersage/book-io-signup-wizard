@@ -299,4 +299,11 @@ select {
     border-color: #666;
     outline: none;
 }
+
+.error {
+    color: red;
+}
+.success {
+    color: green;
+}
 </style>
