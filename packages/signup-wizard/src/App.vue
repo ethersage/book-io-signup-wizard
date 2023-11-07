@@ -302,8 +302,10 @@ select {
 
 .error {
     color: red;
+    margin-top: 5px;
 }
 .success {
     color: green;
+    margin-top: 5px;
 }
 </style>

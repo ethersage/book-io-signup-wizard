@@ -33,20 +33,29 @@ export default {
         return {
             username: '',
             password: '',
-            // noUser: false,
-            // noPass: false
+            noUser: false,
+            noPass: false
         };
     },
     computed: {
-        // showUserError: this.noUser,
-        // showPassError: this.noPass
+        showUserError() {
+            return this.noUser;
+        },
+        showPassError() {
+            return this.noPass;
+        }
     },
     methods: {
         submit() {
-            this.$emit('advance', {
-                username: this.username,
-                password: this.password
-            });
+            this.noUser = !this.username;
+            this.noPass = !this.password;
+
+            if (!this.noUser && !this.noPass) {
+                this.$emit('advance', {
+                    username: this.username,
+                    password: this.password
+                });
+            }
         }
     }
 };
