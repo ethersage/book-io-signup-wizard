@@ -9,6 +9,9 @@
                 id="username"
                 placeholder="Username"
             />
+            <div v-if="showUserError" class="error">
+                Please select a username.
+            </div>
             <label for="password">Password:</label>
             <input
                 type="password"
@@ -16,6 +19,9 @@
                 id="password"
                 placeholder="Password"
             />
+            <div v-if="showPassError" class="error">
+                Please select a password to continue.
+            </div>
             <button class="button submit-button" @click="submit">Next</button>
         </div>
     </div>
@@ -26,8 +32,14 @@ export default {
     data() {
         return {
             username: '',
-            password: ''
+            password: '',
+            // noUser: false,
+            // noPass: false
         };
+    },
+    computed: {
+        // showUserError: this.noUser,
+        // showPassError: this.noPass
     },
     methods: {
         submit() {
