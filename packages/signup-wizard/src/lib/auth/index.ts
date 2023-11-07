@@ -1,12 +1,13 @@
 import {
-    dispatchFetchBooks,
     dispatchFetchFavorite,
     dispatchLogin,
-    dispatchLogout
+    dispatchLogout,
+    dispatchSetBooks
 } from '@/store/helpers';
 import apiLogin from '../api/login';
 import {clearUser, getUser, setUser} from './storage';
 import {goHome, goToDashboard} from '@/router/navigate';
+import fetchBooks from '../api/fetch-books';
 
 export async function performLogin(username: string, password: string) {
     // api login
@@ -33,7 +34,8 @@ export async function hydrateLogin() {
 
     // setup the store and fetch
     dispatchLogin(localUsername);
-    dispatchFetchBooks();
+    const books = await fetchBooks();
+    dispatchSetBooks(books);
     dispatchFetchFavorite();
 }
 

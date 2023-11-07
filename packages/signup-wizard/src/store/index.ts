@@ -45,13 +45,8 @@ const store = createStore({
         }
     },
     actions: {
-        async fetchBooks({commit}) {
-            try {
-                const books = await fetchBooks();
-                commit('SET_BOOKS', books);
-            } catch (error) {
-                console.error('Error fetching books:', error);
-            }
+        async setBooks({commit}, books) {
+            commit('SET_BOOKS', books);
         },
 
         async fetchFavoriteBook({state, commit}) {

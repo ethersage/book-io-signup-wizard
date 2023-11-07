@@ -1,5 +1,5 @@
 import router from '@/router';
-import store from '.';
+import store, {Book} from '.';
 
 export function canLogin() {
     return !store.state.user && router.currentRoute.value.name !== 'home';
@@ -21,8 +21,8 @@ export function dispatchLogin(username: string) {
     store.dispatch('login', username);
 }
 
-export function dispatchFetchBooks() {
-    store.dispatch('fetchBooks');
+export function dispatchSetBooks(books: Book) {
+    store.dispatch('setBooks', books);
 }
 
 export function dispatchFetchFavorite() {
