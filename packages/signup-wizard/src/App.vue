@@ -179,7 +179,8 @@ table {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin: 25px;
+    margin: 25px auto;
+    max-width: 400px;
 }
 
 nav {
@@ -256,7 +257,6 @@ h1 {
     display: flex;
     flex-direction: column;
     text-align: left;
-    max-width: 200px;
     margin: 10px auto;
     padding: 10px 20px 20px 20px;
     border: 1px solid black;
