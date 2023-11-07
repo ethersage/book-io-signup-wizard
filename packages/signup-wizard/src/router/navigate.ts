@@ -1,7 +1,6 @@
 import store from '@/store';
 import router from '.';
 import {RouteLocationRaw} from 'vue-router';
-import {getUser} from '@/lib/auth/storage';
 
 export interface GoHomeArgs {
     replace: boolean;

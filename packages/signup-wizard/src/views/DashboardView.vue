@@ -23,9 +23,7 @@
 
 <script lang="ts">
 import {hydrateLogin} from '@/lib/auth';
-import {doIfLoggedIn} from '@/router/navigate';
 import {defineComponent} from 'vue';
-import {useStore} from 'vuex';
 
 export default defineComponent({
     name: 'DashboardView',

@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import {goToDashboard, goToDashboardIfLoggedIn} from '@/router/navigate';
+import {goToDashboardIfLoggedIn} from '@/router/navigate';
 import {defineComponent, computed} from 'vue';
 import {useStore} from 'vuex';
 import {useRoute} from 'vue-router';
@@ -65,7 +65,10 @@ export default defineComponent({
     },
     methods: {
         async loginUser() {
-            performLogin(this.credentials.username, this.credentials.password);
+            await performLogin(
+                this.credentials.username,
+                this.credentials.password
+            );
         }
     },
     created() {

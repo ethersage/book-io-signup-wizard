@@ -2,9 +2,7 @@
 
 import fetchBooks from '@/lib/api/fetch-books';
 import fetchFavorite from '@/lib/api/fetch-favorite';
-import login from '@/lib/api/login';
 import newUser from '@/lib/api/new-user';
-import {setUser} from '@/lib/auth/storage';
 import {createStore} from 'vuex';
 
 export interface Credentials {

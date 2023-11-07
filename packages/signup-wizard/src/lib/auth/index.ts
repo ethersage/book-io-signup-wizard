@@ -1,7 +1,7 @@
 import {useStore} from 'vuex';
 import apiLogin from '../api/login';
-import {getUser, setUser} from './storage';
-import {goToDashboard} from '@/router/navigate';
+import {clearUser, getUser, setUser} from './storage';
+import {goHome, goToDashboard} from '@/router/navigate';
 import store from '@/store';
 
 export async function performLogin(username: string, password: string) {
@@ -17,15 +17,19 @@ export async function performLogin(username: string, password: string) {
 }
 
 export async function hydrateLogin() {
-    const store = useStore();
-
     const localUsername = getUser();
 
     if (!localUsername) {
-        return;
+        return goHome();
     }
 
     store.dispatch('login', localUsername);
     store.dispatch('fetchBooks');
     store.dispatch('fetchFavoriteBook');
+}
+
+export async function logout() {
+    clearUser();
+    store.dispatch('logout');
+    goHome();
 }
