@@ -1,6 +1,7 @@
 import store from '@/store';
 import router from '.';
 import {RouteLocationRaw} from 'vue-router';
+import {getUser} from '@/lib/auth/storage';
 
 export interface GoHomeArgs {
     replace: boolean;
@@ -8,7 +9,6 @@ export interface GoHomeArgs {
 }
 
 export function goHome(args = {replace: false, success: undefined}) {
-    console.log(args);
     const routerArgs: RouteLocationRaw = {name: 'home'};
 
     if (args.success !== undefined) {

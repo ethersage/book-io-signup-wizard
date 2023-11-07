@@ -1,9 +1,10 @@
 // src/store/index.ts
 
-import fetchBooks from '@/api/fetch-books';
-import fetchFavorite from '@/api/fetch-favorite';
-import login from '@/api/login';
-import newUser from '@/api/new-user';
+import fetchBooks from '@/lib/api/fetch-books';
+import fetchFavorite from '@/lib/api/fetch-favorite';
+import login from '@/lib/api/login';
+import newUser from '@/lib/api/new-user';
+import {setUser} from '@/lib/auth/storage';
 import {createStore} from 'vuex';
 
 export interface Credentials {
@@ -68,18 +69,8 @@ const store = createStore({
             }
         },
 
-        async login({commit}, credentials) {
-            try {
-                const data = await login(
-                    credentials.username,
-                    credentials.password
-                );
-
-                commit('SET_USER', {name: credentials.username});
-                return data;
-            } catch (error) {
-                console.error(error);
-            }
+        async login({commit}, username) {
+            commit('SET_USER', {name: username});
         },
 
         logout({commit}) {

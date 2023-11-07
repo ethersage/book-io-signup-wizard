@@ -35,13 +35,14 @@ import {defineComponent, computed} from 'vue';
 import {useStore} from 'vuex';
 import {useRoute} from 'vue-router';
 
+import {performLogin} from '@/lib/auth';
+
 export default defineComponent({
     setup() {
         const store = useStore();
         const route = useRoute();
 
         // Extract the query parameter and create messages based on its value
-        console.log(route.query.signup);
         const successQuery = route.query.signup;
         const successMessage = computed(() => {
             return successQuery === 'true' ? 'Signup was successful!' : '';
@@ -64,17 +65,7 @@ export default defineComponent({
     },
     methods: {
         async loginUser() {
-            try {
-                await this.store.dispatch('login', {
-                    username: this.credentials.username,
-                    password: this.credentials.password
-                });
-
-                goToDashboard();
-            } catch (error) {
-                console.error('Login failed:', error);
-                alert('Login failed, please try again.');
-            }
+            performLogin(this.credentials.username, this.credentials.password);
         }
     },
     created() {

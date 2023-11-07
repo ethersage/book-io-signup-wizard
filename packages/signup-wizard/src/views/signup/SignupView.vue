@@ -11,7 +11,7 @@
 import {useStore} from 'vuex';
 
 import {goHome} from '@/router/navigate';
-import signup from '@/api/signup';
+import signup from '@/lib/api/signup';
 
 import StepOne from './UserPassStepView.vue';
 import StepTwo from './ChooseFavoriteView.vue';
@@ -37,8 +37,6 @@ export default {
         handleUserPass(data) {
             this.username = data.username;
             this.password = data.password;
-
-            console.log(this.username, this.password);
 
             // Update shared state
             this.step++;

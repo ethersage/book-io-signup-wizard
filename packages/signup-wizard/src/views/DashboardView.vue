@@ -22,6 +22,7 @@
 </template>
 
 <script lang="ts">
+import {hydrateLogin} from '@/lib/auth';
 import {doIfLoggedIn} from '@/router/navigate';
 import {defineComponent} from 'vue';
 import {useStore} from 'vuex';
@@ -35,12 +36,7 @@ export default defineComponent({
         };
     },
     created() {
-        const store = useStore();
-
-        doIfLoggedIn(() => {
-            store.dispatch('fetchBooks');
-            store.dispatch('fetchFavoriteBook');
-        });
+        hydrateLogin();
     }
 });
 </script>
