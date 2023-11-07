@@ -39,17 +39,16 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../styles/mixins.scss';
+
 .dashboard {
     text-align: left;
 }
 
 .dashboard h1 {
     text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 300px;
+    @include truncate(300px);
 }
 
 .dashboard h2 {

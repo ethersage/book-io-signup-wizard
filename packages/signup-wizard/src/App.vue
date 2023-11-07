@@ -173,6 +173,8 @@ table {
 
 /* end CSS reset */
 
+@import './styles/mixins.scss';
+
 #app {
     font-family: Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -190,10 +192,7 @@ nav {
 
     * {
         text-align: left;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200px;
+        @include truncate(200px);
     }
 
     a {
