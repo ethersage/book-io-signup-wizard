@@ -51,7 +51,7 @@ export default {
             try {
                 await signup(this.username, this.password, this.favoriteBookId);
 
-                goHome(true);
+                goHome({replace: true, success: true});
             } catch (error) {
                 console.error('Error during signup:', error);
             }

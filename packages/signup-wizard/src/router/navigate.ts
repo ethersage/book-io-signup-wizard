@@ -1,11 +1,24 @@
 import store from '@/store';
 import router from '.';
+import {RouteLocationRaw} from 'vue-router';
 
-export function goHome(replace = false) {
-    if (replace) {
-        router.replace({name: 'home'});
+export interface GoHomeArgs {
+    replace: boolean;
+    success?: boolean;
+}
+
+export function goHome(args = {replace: false, success: undefined}) {
+    console.log(args);
+    const routerArgs: RouteLocationRaw = {name: 'home'};
+
+    if (args.success !== undefined) {
+        routerArgs.query = {signup: String(args.success)};
+    }
+
+    if (args.replace) {
+        router.replace(routerArgs);
     } else {
-        router.push({name: 'home'});
+        router.push(routerArgs);
     }
 }
 
