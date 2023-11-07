@@ -1,6 +1,8 @@
 <template>
     <div>
         <h1>Login</h1>
+        <p v-if="successMessage" class="success">{{ successMessage }}</p>
+        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
         <form @submit.prevent="loginUser">
             <div class="form">
                 <label for="username">Username:</label>
@@ -29,13 +31,28 @@
 
 <script lang="ts">
 import {goToDashboard, goToDashboardIfLoggedIn} from '@/router/navigate';
-import {defineComponent} from 'vue';
+import {defineComponent, computed} from 'vue';
 import {useStore} from 'vuex';
+import {useRoute} from 'vue-router';
 
 export default defineComponent({
     setup() {
         const store = useStore();
-        return {store};
+        const route = useRoute();
+
+        // Extract the query parameter and create messages based on its value
+        console.log(route.query.signup);
+        const successQuery = route.query.signup;
+        const successMessage = computed(() => {
+            return successQuery === 'true' ? 'Signup was successful!' : '';
+        });
+        const errorMessage = computed(() => {
+            return successQuery === 'false'
+                ? 'Signup failed, please try again.'
+                : '';
+        });
+
+        return {store, successMessage, errorMessage};
     },
     data() {
         return {
@@ -66,4 +83,11 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.error {
+    color: red;
+}
+.success {
+    color: green;
+}
+</style>

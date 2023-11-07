@@ -54,6 +54,7 @@ export default {
                 goHome({replace: true, success: true});
             } catch (error) {
                 console.error('Error during signup:', error);
+                goHome({replace: true, success: false});
             }
         }
     },
