@@ -208,6 +208,9 @@ nav {
 
 body {
     margin: auto;
+    background: #cfd6ff
+        url('https://cdn-edmbc.nitrocdn.com/cwhjsirvUYqaieilJZKJfDyTFhVLqZXs/assets/images/optimized/rev-a0ee7e7/www.booktoken.io/wp-content/uploads/2018/05/c922aa163c78f21d1afd19cddaf2e2d9.22-scaled.jpg') !important;
+    color: #120641;
 }
 
 ul {
@@ -260,6 +263,7 @@ h1 {
     padding: 10px 20px 20px 20px;
     border: 1px solid black;
     border-radius: 10px;
+    background-color: whitesmoke;
 }
 
 .form > label,
