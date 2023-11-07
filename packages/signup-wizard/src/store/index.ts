@@ -1,6 +1,5 @@
 // src/store/index.ts
 
-import newUser from '@/lib/api/new-user';
 import {createStore} from 'vuex';
 
 export interface Credentials {
@@ -58,10 +57,6 @@ const store = createStore({
         logout({commit}) {
             commit('SET_USER', null);
             commit('SET_FAVORITE_BOOK', null);
-        },
-
-        async newUser(_, credentials: Credentials) {
-            await newUser(credentials.username, credentials.password);
         }
     }
 });
